@@ -1,38 +1,38 @@
 export const products = [
     {
         id: 1,
-        name: "Producto 1",
-        description: "texto de ejemplo",
-        price: 1000,
+        name: 'Teclado Mecanico RGB',
+        description: 'Teclado Mecánico con luces RGB switches cherry red',
+        price: 1000
     },
     {
         id: 2,
-        name: "Producto 2",
-        description: "texto de ejemplo",
-        price: 2000,
+        name: 'Samsung Smart TV 55',
+        description: 'Excelente tv LCD...',
+        price: 3000
     },
     {
         id: 3,
-        name: "Producto 3",
-        description: "texto de ejemplo",
-        price: 3000,
+        name: 'Audifono Bluetooth Sony',
+        description: 'Audífono Bluetooth para smartphone',
+        price: 770
     },
     {
         id: 4,
-        name: "Producto 4",
-        description: "texto de ejemplo",
-        price: 4000,
+        name: 'Memoria Corsair 8GB DDR5',
+        description: 'Memoria RAM optimizada para Juegos',
+        price: 3700
     },
     {
         id: 5,
-        name: "Producto 5",
-        description: "texto de ejemplo",
-        price: 5000,
+        name: 'Asus Nvidia RTX',
+        description: 'Tarjeta Gráfica para juegos en 4k',
+        price: 5000
     },
     {
         id: 6,
-        name: "Producto 6",
-        description: "texto de ejemplo",
-        price: 6000,
-    }
+        name: 'CPU Intel Core i5',
+        description: 'Optimizada para tareas multicore de 12va generación',
+        price: 4000
+    },
 ]

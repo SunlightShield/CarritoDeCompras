@@ -1,16 +1,43 @@
-import { useState } from "react";
-import { useEffect } from "react";
-import { getProducts } from "./services/productServices";
+import { useState } from "react"
+import { CartView } from "./components/CartView"
+import { CatalogView } from "./components/CatalogView"
+
+const initialCartItems = [
+
+    {
+        product: {
+
+        },
+        quantity: 0,
+        price: 0
+    }
+
+]
 
 export const CartApp = () => {
-    const [products, setProducts] = useState([])
 
+    const [cartItems, setCartItems] = useState(initialCartItems);
 
-    useEffect( () => {
-        setProducts(getProducts());
-    }, []
-    )
+    const handlerAddProductCart = (product) => {
+        const hasItem = cartItems.find((i) => i.product.id === product.id)
+        if(hasItem){
 
+            setCartItems([
+                ...cartItems.filter((i) => i.product.id !== product.id),{
+                    product, 
+                    quantity: hasItem.quantity + 1,
+                }
+            ])
+
+        } else {
+            setCartItems([...cartItems, {
+                product,
+                quantity: 1,
+    
+            }
+            ])
+        }
+    }
 
     return (
 
@@ -18,48 +45,11 @@ export const CartApp = () => {
 
             <div className="container">
                 <h3>Carrito de compras</h3>
-                <div className="row">
-                    {products.map(prod => (
-                        <div className="col-4 mb-2" key={prod.id}>
-                        <div className="card">
-                            <div className="card-body">
-                                <h5 className="card-title">{prod.name}</h5>
-                                <p className="card-text"> {prod.description}</p>
-                                <p className="card-text"> {prod.price}</p>
-                                <button className="btn btn-primary">Agregar</button>
-                            </div>
-                        </div>
-                    </div>
-                    ))}
-                </div>
+
+                <CatalogView handler={handlerAddProductCart} />
 
                 <div className="my-4 w-50">
-                    <h3>carro de compra</h3>
-                    <table className="table table-hover">
-                        <thead>
-                            <th>Producto</th>
-                            <th>Precio</th>
-                            <th>Cantidad</th>
-                            <th>Total</th>
-                            <th>Eliminar</th>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>nombre</td>
-                                <td>precio</td>
-                                <td>cantidad</td>
-                                <td>total</td>
-                                <td>eliminar</td>
-                            </tr>
-                        </tbody>
-                        <tfoot>
-                        <tr>
-                                <td colSpan ="3" className="text-end fw-bold">total</td>
-                                <td colSpan ="2" className="text-end fw-bold">1234</td>
-                            </tr>
-                        </tfoot>
-
-                    </table>
+                    <CartView items={cartItems} />
                 </div>
             </div>
         </>
