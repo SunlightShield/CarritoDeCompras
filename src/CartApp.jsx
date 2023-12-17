@@ -4,14 +4,6 @@ import { CatalogView } from "./components/CatalogView"
 
 const initialCartItems = [
 
-    {
-        product: {
-
-        },
-        quantity: 0,
-        price: 0
-    }
-
 ]
 
 export const CartApp = () => {
@@ -39,6 +31,12 @@ export const CartApp = () => {
         }
     }
 
+    const handlerDeleteProductCard = (id) => {
+        setCartItems([
+            ...cartItems.filter((i) => i.product.id !== id)
+        ])
+    }
+
     return (
 
         <>
@@ -48,9 +46,11 @@ export const CartApp = () => {
 
                 <CatalogView handler={handlerAddProductCart} />
 
-                <div className="my-4 w-50">
-                    <CartView items={cartItems} />
+                {cartItems?.length <= 0 || ( <div className="my-4 w-50">
+                    <CartView items={cartItems} handlerDelete={handlerDeleteProductCard} />
                 </div>
+                )}
+
             </div>
         </>
 
