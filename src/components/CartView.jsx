@@ -6,12 +6,11 @@ export const CartView = ({ handlerDelete, items }) => {
     const [total, setTotal] = useState(0)
 
     useEffect(() => {
-        setTotal(
+        setTotal(CalcularTotal(items));
+            sessionStorage.setItem("cart",JSON.stringify(items)); //session storage solo guarda datos de tipo string, por lo cual usamos el 
+            //Json.stringify para transformar items (objeto) en String
 
-            CalcularTotal(items)
-        )
-
-    }, [items])
+    }, [items]);
 
     const onDeleteProduct = (id) =>{
 

@@ -1,40 +1,58 @@
-import { useState } from "react"
+import { useReducer, useState } from "react"
 import { CartView } from "./components/CartView"
 import { CatalogView } from "./components/CatalogView"
+import { itemsReducer } from "./reducer/itemsReducer"
 
-const initialCartItems = [
-
-]
+const initialCartItems = JSON.parse(sessionStorage.getItem("cart") || []) //el carrito parte vacio
 
 export const CartApp = () => {
 
-    const [cartItems, setCartItems] = useState(initialCartItems);
+    // const [cartItems, setCartItems] = useState(initialCartItems) ;
+    const [cartItems, dispach] = useReducer(itemsReducer, initialCartItems) ;
+
 
     const handlerAddProductCart = (product) => {
         const hasItem = cartItems.find((i) => i.product.id === product.id)
         if(hasItem){
 
-            setCartItems([
-                ...cartItems.filter((i) => i.product.id !== product.id),{
-                    product, 
-                    quantity: hasItem.quantity + 1,
+            // setCartItems([
+            //     ...cartItems.filter((i) => i.product.id !== product.id),{
+            //         product, 
+            //         quantity: hasItem.quantity + 1,
+            //     }
+            // ])
+
+            dispach(
+                {
+                    type: "UpdateQuantityProductCart",
+                    payload: product,
                 }
-            ])
+            );
 
         } else {
-            setCartItems([...cartItems, {
-                product,
-                quantity: 1,
+
+            dispach({
+                type: "AddProductCart",
+                payload: product, 
+            });
+            // setCartItems([...cartItems, {
+            //     product,
+            //     quantity: 1,
     
-            }
-            ])
+            // }
+            // ])
         }
     }
 
     const handlerDeleteProductCard = (id) => {
-        setCartItems([
-            ...cartItems.filter((i) => i.product.id !== id)
-        ])
+        // setCartItems([
+        //     ...cartItems.filter((i) => i.product.id !== id)
+        // ])
+        dispach({
+            type: "DeleteProductCart",
+            payload: id, 
+        });
+
     }
 
     return (
