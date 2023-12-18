@@ -1,6 +1,17 @@
-
+import { useEffect, useState } from "react"
+import { CalcularTotal } from "../services/productServices"
 
 export const CartView = ({ handlerDelete, items }) => {
+
+    const [total, setTotal] = useState(0)
+
+    useEffect(() => {
+        setTotal(
+
+            CalcularTotal(items)
+        )
+
+    }, [items])
 
     const onDeleteProduct = (id) =>{
 
@@ -37,7 +48,7 @@ export const CartView = ({ handlerDelete, items }) => {
                         <tfoot>
                             <tr>
                                 <td colSpan="3" className="text-end fw-bold">total</td>
-                                <td colSpan="2" className="text-end fw-bold">1234</td>
+                                <td colSpan="2" className="text-start fw-bold">{total}</td>
                             </tr>
                         </tfoot>
 
