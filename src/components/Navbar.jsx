@@ -12,13 +12,13 @@ export const Navbar = () => {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <NavLink className={'nav-link'} to="/">Home</NavLink>
+                            <NavLink className={'nav-link'} to="/">Inicio</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className={'nav-link'} to="/catalog">Catalog</NavLink>
+                            <NavLink className={'nav-link'} to="/catalog">Catalogo</NavLink>
                         </li>
                         <li className="nav-item">
-                            <NavLink className={'nav-link'} to="/cart">Cart</NavLink>
+                            <NavLink className={'nav-link'} to="/cart">Carrito</NavLink>
                         </li>
                         
                     </ul>
